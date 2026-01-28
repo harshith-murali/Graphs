@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <unordered_map>
+#include <set>
 using namespace std;
 
 class DSU {
@@ -63,7 +67,6 @@ public:
 
             groupedEmails[root].insert(email);
 
-            // Store name once per root (first encountered)
             if (!rootName.count(root)) {
                 rootName[root] = accounts[root][0];
             }
@@ -86,3 +89,25 @@ public:
         return result;
     }
 };
+
+int main() {
+    Solution sol;
+
+    vector<vector<string>> accounts = {
+        {"John", "johnsmith@mail.com", "john_newyork@mail.com"},
+        {"John", "johnsmith@mail.com", "john00@mail.com"},
+        {"Mary", "mary@mail.com"},
+        {"John", "johnnybravo@mail.com"}
+    };
+
+    vector<vector<string>> result = sol.accountsMerge(accounts);
+
+    for (auto &acc : result) {
+        for (auto &s : acc) {
+            cout << s << " ";
+        }
+        cout << "\n";
+    }
+
+    return 0;
+}
